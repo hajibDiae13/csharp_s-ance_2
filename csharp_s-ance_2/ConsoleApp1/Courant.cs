@@ -15,19 +15,19 @@ namespace ConsoleApp1
             this.typeCompte = "Curant";
         }
 
-        public bool Debiter(MAD montant)
+        public override bool Debiter(MAD montant)
         {
             if (montant >= 0 && this.solde- montant<= decouver)
             {
                 this.solde -= montant;
                 Array.Resize(ref ops, ops.Length + 1);
-                ops[ops.GetUpperBound(0)] = new Operation("Débité ", montant);
+                ops[ops.GetUpperBound(0)] = new Operation("Débité   ", montant);
                 return true;
             }
             return false;
         }
 
-        public void Consulter()
+        public override void Consulter()
         {
 
             Console.WriteLine("Date d'ouverture    : " + dateOuverture.ToString());

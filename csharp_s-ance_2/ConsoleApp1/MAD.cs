@@ -32,18 +32,6 @@ namespace ConsoleApp1
             return result;
         }
 
-        public static MAD operator *(MAD a, MAD b)
-        {
-            MAD result = new MAD(a.montant * b.montant);
-            return result;
-        }
-
-        public static MAD operator /(MAD a, MAD b)
-        {
-            if(b.montant==0) throw new DivideByZeroException();
-            MAD result = new MAD(a.montant + b.montant);
-            return result;
-        }
 
         public static MAD operator *(MAD a, double b)
         {
@@ -51,18 +39,7 @@ namespace ConsoleApp1
             return result;
         }
 
-        public static MAD operator /(MAD a, double b)
-        {
-            if (b == 0) throw new DivideByZeroException();
-            MAD result = new MAD(a.montant + b);
-            return result;
-        }
 
-        public static bool operator >(MAD a, MAD b)
-        {
-            if (a.montant > b.montant) return true;
-            return false;
-        }
 
         public static bool operator <=(MAD a, MAD b)
         {
@@ -76,62 +53,9 @@ namespace ConsoleApp1
             return false;
         }
 
-        public static bool operator <(MAD a, MAD b)
-        {
-            if (a.montant < b.montant) return true;
-            return false;
-        }
-
-        public static bool operator ==(MAD a, MAD b)
-        {
-            if (a.montant == b.montant) return true;
-            return false;
-        }
-        public static bool operator !=(MAD a, MAD b)
-        {
-            if (a.montant != b.montant) return true;
-            return false;
-        }
-
-        public static bool operator >(MAD a, double b)
-        {
-            if (a.montant > b) return true;
-            return false;
-        }
-
-        public static bool operator <=(MAD a, double b)
-        {
-            if (a.montant <= b) return true;
-            return false;
-        }
-
-        public static bool operator >=(MAD a, double b)
+        public static bool operator >=(MAD a, int b)
         {
             if (a.montant >= b) return true;
-            return false;
-        }
-
-        public static bool operator <(MAD a, double b)
-        {
-            if (a.montant < b) return true;
-            return false;
-        }
-
-        public static bool operator ==(MAD a, double b)
-        {
-            if (a.montant == b) return true;
-            return false;
-        }
-
-        public static bool operator !=(MAD a, double b)
-        {
-            if (a.montant != b) return true;
-            return false;
-        }
-
-        public static bool operator >(MAD a, int b)
-        {
-            if (a.montant > b) return true;
             return false;
         }
 
@@ -141,29 +65,7 @@ namespace ConsoleApp1
             return false;
         }
 
-        public static bool operator >=(MAD a, int b)
-        {
-            if (a.montant >= b) return true;
-            return false;
-        }
 
-        public static bool operator <(MAD a, int b)
-        {
-            if (a.montant < b) return true;
-            return false;
-        }
-
-        public static bool operator ==(MAD a, int b)
-        {
-            if (a.montant == b) return true;
-            return false;
-        }
-
-        public static bool operator !=(MAD a, int b)
-        {
-            if (a.montant != b) return true;
-            return false;
-        }
 
     }
 

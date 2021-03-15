@@ -13,7 +13,7 @@ namespace ConsoleApp1
         public Epargne(Client c1, double taux) : base(c1)
         {
             this.solde = new MAD(0);
-            this.taux = taux;
+            this.taux = taux >= 0 && taux <= 100 ? taux : 0 ;
             this.typeCompte = "Epargne";
         }
 
@@ -25,9 +25,11 @@ namespace ConsoleApp1
         public void AjouterTaux()
         {
             this.solde += CalculeTaux();
+            Array.Resize(ref ops, ops.Length + 1);
+            ops[ops.GetUpperBound(0)] = new Operation("Interest ", CalculeTaux());
         }
 
-        public void Consulter()
+        public override void Consulter()
         {
             Console.WriteLine("Date d'ouverture    : " + dateOuverture.ToString());
             Console.WriteLine("Date de d'expiration: " + dateExpiration.ToString());

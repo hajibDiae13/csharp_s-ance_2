@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Compte
+    abstract class Compte
     {
         protected readonly DateTime dateOuverture = DateTime.Now;
         protected readonly DateTime dateExpiration = DateTime.Now.AddYears(3);
@@ -26,31 +26,31 @@ namespace ConsoleApp1
             this.typeCompte = "Génerique";
         }
 
-        public bool Crediter(MAD montant)
+        public virtual bool Crediter(MAD montant)
         {
             if(montant>=0)
             {
                 this.solde += montant;
                 Array.Resize(ref ops, ops.Length + 1);
-                ops[ops.Length-1] = new Operation("Credité", montant);
+                ops[ops.Length-1] = new Operation("Credité  ", montant);
                 return true;
             }
             return false;
         }
 
-        public bool Debiter(MAD montant)
+        public virtual bool Debiter(MAD montant)
         {
             if (montant >= 0)
             {
                 this.solde -= montant;
                 Array.Resize(ref ops, ops.Length + 1);
-                ops[ops.GetUpperBound(0)] = new Operation("Débité ", montant);
+                ops[ops.GetUpperBound(0)] = new Operation("Débité   ", montant);
                 return true;
             }
             return false;
         }
 
-        public bool Verser(MAD montant,Compte cible)
+        public virtual bool Verser(MAD montant,Compte cible)
         {
             if (montant <= Compte.plafond && montant<=this.solde && montant >= 0) 
             {
@@ -61,7 +61,7 @@ namespace ConsoleApp1
             return false;
         }
 
-        public void Consulter()
+        public virtual void Consulter()
         {
 
             Console.WriteLine("Date d'ouverture    : " + dateOuverture.ToString());
