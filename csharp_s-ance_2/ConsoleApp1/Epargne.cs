@@ -10,42 +10,42 @@ namespace ConsoleApp1
     class Epargne : Compte
     {
         private readonly double taux;
+        
         public Epargne(Client c1, double taux) : base(c1)
         {
-            this.solde = new MAD(0);
+           // this.solde = new MAD(0);
             this.taux = taux >= 0 && taux <= 100 ? taux : 0 ;
-            this.typeCompte = "Epargne";
         }
 
         public MAD CalculeTaux()
         {
-            return this.solde * (this.taux/100);
+            return calculeTaux(this.taux);
         }
 
         public void AjouterTaux()
         {
-            this.solde += CalculeTaux();
-            Array.Resize(ref ops, ops.Length + 1);
-            ops[ops.GetUpperBound(0)] = new Operation("Interest ", CalculeTaux());
+            addTaux(this.taux);
+            base.addOperation("Interest", CalculeTaux());
+        }
+
+        public override bool Debiter(MAD montant)
+        {
+            if (Epargne_Debit_Test(montant))
+            {
+                base.Debiter(montant);
+                return true;
+            }
+            Console.WriteLine("Operation impossible, montant a debiter plus que la moitier.");
+            return false;
         }
 
         public override void Consulter()
         {
-            Console.WriteLine("Date d'ouverture    : " + dateOuverture.ToString());
-            Console.WriteLine("Date de d'expiration: " + dateExpiration.ToString());
-            Console.WriteLine("Type du compte      : " + typeCompte);
-            Console.WriteLine("Numero du compte    : " + numCompte);
-            titulaire.Afficher();
-            Console.WriteLine("Solde               : " + solde.Afficher());
-            Console.WriteLine("Plafond             : " + plafond.Afficher());
+            base.Consulter();
             Console.WriteLine("taux                : " + this.taux);
-            Console.WriteLine("Interest            : "+CalculeTaux().Afficher());
-            Console.WriteLine("Operations          :\n");
+            Console.WriteLine("Interest            : "+AppBanque.AfficherConvertion(CalculeTaux()));
+            Console.WriteLine("Type du compte      : epargne");
 
-            for (int i = 0; i < ops.Length; i++)
-            {
-                ops[i].Afficher();
-            }
         }
     }
 }

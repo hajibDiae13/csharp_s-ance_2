@@ -24,7 +24,9 @@ namespace ConsoleApp1
 
         public void Afficher()
         {
-            Console.WriteLine("\tID: "+this.ID+"  date: " + this.dateOperation.ToString()+"  libele: "+this.libele+ "  montant: " + this.montant.Afficher());
+            Console.WriteLine("\tID: "+this.ID+"  date: " + this.dateOperation.ToString()+"  libele: "+this.libele+ "  montant: " + AppBanque.AfficherConvertion(this.montant));
         }
+
+
     }
 }

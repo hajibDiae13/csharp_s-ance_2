@@ -9,41 +9,28 @@ namespace ConsoleApp1
     class Courant : Compte 
     {
         private static MAD decouver = new MAD(200);
+     
         public Courant(Client c1) : base(c1)
         {
-            this.solde = new MAD(0);
-            this.typeCompte = "Curant";
         }
 
         public override bool Debiter(MAD montant)
         {
-            if (montant >= 0 && this.solde- montant<= decouver)
+            if(decouverTest(montant, decouver))
             {
-                this.solde -= montant;
-                Array.Resize(ref ops, ops.Length + 1);
-                ops[ops.GetUpperBound(0)] = new Operation("Débité   ", montant);
+                base.Debiter(montant);
                 return true;
             }
+            Console.WriteLine("Operation impossible, decouvert depassé.");
             return false;
         }
 
         public override void Consulter()
         {
+            base.Consulter();
+            Console.WriteLine("decouver            : "+AppBanque.AfficherConvertion(decouver));
+            Console.WriteLine("type de compte      : Courant");
 
-            Console.WriteLine("Date d'ouverture    : " + dateOuverture.ToString());
-            Console.WriteLine("Date de d'expiration: " + dateExpiration.ToString());
-            Console.WriteLine("Type du compte      : " + typeCompte);
-            Console.WriteLine("Numero du compte    : " + numCompte);
-            titulaire.Afficher();
-            Console.WriteLine("Solde               : " + solde.Afficher());
-            Console.WriteLine("decouver            : " + decouver.Afficher());
-            Console.WriteLine("Plafond             : " + plafond.Afficher());
-            Console.WriteLine("Operations          :\n");
-
-            for (int i = 0; i < ops.Length; i++)
-            {
-                ops[i].Afficher();
-            }
 
         }
     }

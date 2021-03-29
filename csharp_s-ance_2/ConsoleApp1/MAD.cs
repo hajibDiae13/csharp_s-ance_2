@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class MAD
+    class MAD : Devise
     {
         private double montant;
 
@@ -15,6 +15,23 @@ namespace ConsoleApp1
             this.montant = montant;
         }
 
+        public string CovertToUSD()
+        {
+            return new USD(montant * 0.11).Afficher();
+        }
+        public string CovertToEUR()
+        {
+            return new EUR(montant * 0.093).Afficher();
+        }
+        public string CovertToJPY()
+        {
+            return new JPY(montant * 12.12).Afficher();
+        }
+        public string CovertToMAD()
+        {
+            return this.Afficher() ;
+        }
+    
         public string Afficher()
         {
             return this.montant + " MAD";
@@ -37,6 +54,11 @@ namespace ConsoleApp1
         {
             MAD result = new MAD(a.montant * b);
             return result;
+        }
+
+        public MAD half()
+        {
+            return new MAD(this.montant / 2);
         }
 
 
@@ -64,6 +86,8 @@ namespace ConsoleApp1
             if (a.montant <= b) return true;
             return false;
         }
+
+
 
 
 
