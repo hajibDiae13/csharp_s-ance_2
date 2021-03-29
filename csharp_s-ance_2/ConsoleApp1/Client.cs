@@ -26,6 +26,10 @@ namespace ConsoleApp1
             Console.WriteLine("adresse             : " + this.adresse);
         }
 
+        public bool isClient(string nom,string prenom)
+        {
+             return this.nom == nom && this.prenom == prenom ? true : false;
+        }
 
     }
 }
